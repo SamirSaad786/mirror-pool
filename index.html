@@ -329,7 +329,6 @@ h1{font-family:'Crimson Pro',serif;font-size:clamp(28px,5vw,48px);font-weight:30
 
 <!-- INTRO -->
 <div class="intro-screen" id="introScreen">
-  <img class="intro-kitsune" id="introKitsune" src="" style="width:180px;height:180px;object-fit:contain;display:block;margin-bottom:24px;filter:drop-shadow(0 0 24px rgba(201,168,76,0.35));animation:float 3s ease-in-out infinite;">
   <div class="intro-title">The Mirror Pool</div>
   <div class="intro-sub">鏡の池 · A puzzle of two worlds</div>
   <div class="intro-tails" id="introTailsDisplay">Earn all nine tails to awaken the Celestial Fox</div>
@@ -1482,7 +1481,7 @@ setInterval(updateDailyCountdown,60000);
 // ═══════════════════════════════════════
 document.getElementById('startBtn').addEventListener('click',()=>{
   document.getElementById('winKitsune').src = KITSUNE_WIN_IMG;
-  document.getElementById('introKitsune').src = KITSUNE_WIN_IMG;
+  const introKitsuneEl = document.getElementById('introKitsune'); if(introKitsuneEl) introKitsuneEl.src = KITSUNE_WIN_IMG;
   initAudio();
   loadPersist();
   const intro=document.getElementById('introScreen');
