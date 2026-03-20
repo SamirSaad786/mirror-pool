@@ -313,7 +313,8 @@ h1{font-family:'Crimson Pro',serif;font-size:clamp(28px,5vw,48px);font-weight:30
 .tail-popup-sub{font-size:9px;letter-spacing:4px;color:var(--mist);text-transform:uppercase;margin-top:4px;}
 
 /* CREDIT FOOTER */
-.credit-footer{position:fixed;bottom:0;left:0;right:0;z-index:40;padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(to top,rgba(6,8,8,.85) 0%,transparent 100%);pointer-events:none;}
+.credit-footer{position:fixed;bottom:0;left:0;right:0;z-index:40;padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(to top,rgba(6,8,8,.85) 0%,transparent 100%);pointer-events:none;transition:opacity 0.5s ease;}
+.credit-footer.hidden{opacity:0;pointer-events:none;}
 .credit-footer-inner{display:flex;align-items:center;gap:8px;pointer-events:all;}
 .credit-text{font-family:'Crimson Pro',serif;font-style:italic;font-size:11px;color:rgba(139,168,156,.5);letter-spacing:.5px;}
 .credit-link{color:rgba(201,168,76,.6);text-decoration:none;transition:color .2s,text-shadow .2s;}
@@ -1139,6 +1140,7 @@ function showCelestialAscension(){
     document.getElementById('winSubtitle').textContent='All nine tails · The Celestial Fox ascends';
     document.getElementById('winStats').innerHTML='<div style="font-family:Crimson Pro,serif;font-style:italic;font-size:16px;color:var(--mist);max-width:320px;margin:auto;">You have proven worthy of the fox\'s eternal gaze. The mirror between worlds grows thin.</div>';
     document.getElementById('winOverlay').classList.add('show');
+    document.querySelector('.credit-footer').classList.remove('hidden');
     spawnParticles();
   },1500);
 }
@@ -1348,6 +1350,7 @@ function showWinScreen(){
     document.getElementById('winStats').innerHTML=buildWinStats();
     document.getElementById('tailEarnedDisplay').innerHTML='';
     document.getElementById('winOverlay').classList.add('show');
+    document.querySelector('.credit-footer').classList.remove('hidden');
     spawnParticles();
   } else {
     document.getElementById('btnNext').style.display=gameMode==='story'?'inline-block':'none';
@@ -1487,6 +1490,7 @@ document.getElementById('startBtn').addEventListener('click',()=>{
   const intro=document.getElementById('introScreen');
   intro.classList.add('fade-out');
   setTimeout(()=>intro.remove(),1000);
+  document.querySelector('.credit-footer').classList.add('hidden');
   buildScene();
   renderTails();
   updateFavorUI();
